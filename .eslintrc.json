@@ -1,0 +1,59 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint/eslint-plugin"],
+  "extends": [
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-base",
+    "airbnb-typescript/base"
+  ],
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-use-before-define": [
+        "error",
+        {
+            "functions": false,
+            "classes": true,
+            "variables": true
+        }
+    ],
+    "@typescript-eslint/no-use-before-define": [
+        "error",
+        {
+            "functions": false,
+            "classes": true,
+            "variables": true,
+            "typedefs": true
+        }
+    ],
+    "import/no-extraneous-dependencies": "off"
+  },
+  "settings": {
+      "import/resolver": {
+          "typescript": {
+              "alwaysTryTypes": true,
+              "project": "./tsconfig.json"
+          }
+      }
+  },
+  "overrides": [
+    {
+      "files": ["*.graphql"],
+      "parser": "@graphql-eslint/eslint-plugin",
+      "plugins": ["@graphql-eslint"],
+      "rules": {
+        "@graphql-eslint/known-type-names": "error"
+      }
+    }
+  ]
+}
