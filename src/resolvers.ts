@@ -3,6 +3,6 @@ import { loadFilesSync } from '@graphql-tools/load-files';
 
 const resolverFiles = loadFilesSync('./**/**/*.resolver.ts');
 
-const resolvers = mergeResolvers(resolverFiles);
+const resolvers: any = mergeResolvers(resolverFiles);
 
 export default resolvers;

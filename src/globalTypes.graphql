@@ -1,0 +1,10 @@
+type SomeObjects {
+  limit: Int!
+  offset: Int!
+  total: Int!
+}
+
+type DeleteResponse {
+    acknowledged: Boolean,
+    deletedCount: Int
+}
