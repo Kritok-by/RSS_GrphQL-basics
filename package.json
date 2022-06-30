@@ -19,16 +19,22 @@
   },
   "homepage": "https://github.com/Kritok-by/RSS_GrphQL-basics#readme",
   "dependencies": {
+    "@graphql-tools/schema": "^8.5.0",
     "apollo-server": "^3.9.0",
+    "apollo-server-express": "^3.9.0",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
-    "graphql": "^16.5.0"
+    "express": "^4.18.1",
+    "graphql": "^16.5.0",
+    "graphql-middleware": "^6.1.31",
+    "i": "^0.3.7",
+    "npm": "^8.13.2"
   },
   "devDependencies": {
     "@graphql-eslint/eslint-plugin": "^3.10.4",
     "@graphql-tools/load-files": "^6.6.0",
     "@graphql-tools/merge": "^8.3.0",
-    "@types/express": "4.17.13",
+    "@types/express": "^4.17.13",
     "@types/node": "18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.30.0",
     "@typescript-eslint/parser": "^5.30.0",

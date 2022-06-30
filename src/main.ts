@@ -1,13 +1,11 @@
 import { ApolloServer } from 'apollo-server';
 import 'dotenv/config';
-import resolvers from './resolvers';
-import typeDefs from './typeDefs';
+import schemaWithMiddleware from './services/schema';
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
   csrfPrevention: true,
   cache: 'bounded',
+  schema: schemaWithMiddleware,
 });
 
 // The `listen` method launches a web server.

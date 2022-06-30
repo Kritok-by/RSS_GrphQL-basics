@@ -20,7 +20,7 @@
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "no-use-before-define": [
-        "warning",
+        "warn",
         {
             "functions": false,
             "classes": true,
@@ -28,7 +28,7 @@
         }
     ],
     "@typescript-eslint/no-use-before-define": [
-        "warning",
+        "warn",
         {
             "functions": false,
             "classes": true,

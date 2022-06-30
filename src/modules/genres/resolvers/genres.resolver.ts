@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { env } from 'process';
 
-const client = (() => axios.create({baseURL: env.GENRES_URL}))();
+const client = (() => axios.create({ baseURL: env.GENRES_URL }))();
 
 const resolver = {
   Query: {
-    genres: async (_, {limit = 5, offset = 0, filter = ''}) => {
-
-      const { data } = await client.get('',{params:{limit, offset, filter}});
+    genres: async (_, { limit = 5, offset = 0, filter = '' }) => {
+      const { data } = await client.get('', { params: { limit, offset, filter } });
       return data;
     },
     genre: async (_, { _id }) => {
@@ -34,7 +33,6 @@ const resolver = {
 
         return data;
       } catch (e) {
-
         return e;
       }
     },
@@ -48,7 +46,6 @@ const resolver = {
 
         return data;
       } catch (e) {
-
         return e;
       }
     },

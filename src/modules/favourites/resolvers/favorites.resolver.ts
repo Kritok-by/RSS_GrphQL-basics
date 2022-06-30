@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { env } from 'process';
 
-const client = (() => axios.create({baseURL: env.BANDS_URL}))();
+const client = (() => axios.create({ baseURL: env.BANDS_URL }))();
 
 const resolver = {
   Query: {
@@ -12,67 +12,67 @@ const resolver = {
         },
       });
       return data;
-    }
+    },
   },
   Mutation: {
-    addTrackToFavourites: async (_, {id}) => {
-      const { data } = await client.put('add', {id, type: 'tracks'}, {
+    addTrackToFavourites: async (_, { id }) => {
+      const { data } = await client.put('add', { id, type: 'tracks' }, {
         headers: {
           Authorization: `Bearer ${process.env.JWT}`,
         },
       });
       return data;
     },
-    addBandToFavourites: async (_, {id}) => {
-      const { data } = await client.put('add', {id, type: 'bands'}, {
+    addBandToFavourites: async (_, { id }) => {
+      const { data } = await client.put('add', { id, type: 'bands' }, {
         headers: {
           Authorization: `Bearer ${process.env.JWT}`,
         },
       });
       return data;
     },
-    addArtistToFavourites: async (_, {id}) => {
-      const { data } = await client.put('add', {id, type: 'artists'}, {
+    addArtistToFavourites: async (_, { id }) => {
+      const { data } = await client.put('add', { id, type: 'artists' }, {
         headers: {
           Authorization: `Bearer ${process.env.JWT}`,
         },
       });
       return data;
     },
-    addGenreToFavourites: async (_, {id}) => {
-      const { data } = await client.put('add', {id, type: 'genres'}, {
+    addGenreToFavourites: async (_, { id }) => {
+      const { data } = await client.put('add', { id, type: 'genres' }, {
         headers: {
           Authorization: `Bearer ${process.env.JWT}`,
         },
       });
       return data;
     },
-    removeTrackToFavourites: async (_, {id}) => {
-      const { data } = await client.put('remove', {id, type: 'tracks'}, {
+    removeTrackToFavourites: async (_, { id }) => {
+      const { data } = await client.put('remove', { id, type: 'tracks' }, {
         headers: {
           Authorization: `Bearer ${process.env.JWT}`,
         },
       });
       return data;
     },
-    removeBandToFavourites: async (_, {id}) => {
-      const { data } = await client.put('remove', {id, type: 'bands'}, {
+    removeBandToFavourites: async (_, { id }) => {
+      const { data } = await client.put('remove', { id, type: 'bands' }, {
         headers: {
           Authorization: `Bearer ${process.env.JWT}`,
         },
       });
       return data;
     },
-    removeArtistToFavourites: async (_, {id}) => {
-      const { data } = await client.put('remove', {id, type: 'artists'}, {
+    removeArtistToFavourites: async (_, { id }) => {
+      const { data } = await client.put('remove', { id, type: 'artists' }, {
         headers: {
           Authorization: `Bearer ${process.env.JWT}`,
         },
       });
       return data;
     },
-    removeGenreToFavourites: async (_, {id}) => {
-      const { data } = await client.put('remove', {id, type: 'genres'}, {
+    removeGenreToFavourites: async (_, { id }) => {
+      const { data } = await client.put('remove', { id, type: 'genres' }, {
         headers: {
           Authorization: `Bearer ${process.env.JWT}`,
         },

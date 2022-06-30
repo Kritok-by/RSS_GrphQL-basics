@@ -2,18 +2,18 @@ type Band {
     id: ID!
     name: String
     origin: String
-    members: [Member]
+    members: [ID]
     website: String
-    genres: [Genre]
+    genres: [ID]
 }
 
 input BandInput {
     id: ID
     name: String
     origin: String
-    members: [MemberInput]
+    members: [ID]
     website: String
-    genres: [GenreInput]
+    genres: [ID]
 }
 
 type Member {
