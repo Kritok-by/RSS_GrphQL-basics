@@ -17,7 +17,7 @@ input ArtistInput {
     birthDate: String
     birthPlace: String
     country: String!
-    # bands: [Band]
+    bands: [Band]
     instruments: String
 }
 

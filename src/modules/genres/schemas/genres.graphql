@@ -4,5 +4,4 @@ type Genre {
     description: String
     country: String
     year: Int
-    subGenres: [Genre]
 }
