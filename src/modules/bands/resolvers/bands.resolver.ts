@@ -1,51 +1,54 @@
 import axios from 'axios';
 import { env } from 'process';
 
+const client = (() => axios.create({baseURL: env.BANDS_URL}))();
+
 const resolver = {
   Query: {
-    artists: async () => {
-      const { data } = await axios.get(env.ARTISTS_URL);
+    bands: async (_, {limit = 5, offset = 0, filter = ''}) => {
+
+      const { data } = await client.get('',{params:{limit, offset, filter}});
       return data;
     },
-    artist: async (_, { _id }) => {
-      const { data } = await axios.get(`${env.ARTISTS_URL}${_id}`);
+    band: async (_, { _id }) => {
+      const { data } = await client.get(_id);
       return data;
     },
   },
   Mutation: {
-    create: async (_, args) => {
-      const { data } = await axios.post(`${env.ARTISTS_URL}`, args, {
+    createBand: async (_, args) => {
+      const { data } = await client.post('', args, {
         headers: {
           Authorization: `Bearer ${process.env.JWT}`,
         },
       });
       return data;
     },
-    update: async (_, { id, args }) => {
+    updateBand: async (_, { id, args }) => {
       try {
-        const { data } = await axios.put(`${env.ARTISTS_URL}${id}`, args, {
+        const { data } = await client.put(id, args, {
           headers: {
             Authorization: `Bearer ${process.env.JWT}`,
           },
         });
-        console.log(data);
+
         return data;
       } catch (e) {
-        console.log(e);
+
         return e;
       }
     },
-    delete: async (_, { id }) => {
+    deleteBand: async (_, { id }) => {
       try {
-        const { data } = await axios.delete(`${env.ARTISTS_URL}${id}`, {
+        const { data } = await client.delete(id, {
           headers: {
             Authorization: `Bearer ${process.env.JWT}`,
           },
         });
-        console.log(data);
+
         return data;
       } catch (e) {
-        console.log(e);
+
         return e;
       }
     },

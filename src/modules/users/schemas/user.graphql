@@ -12,9 +12,9 @@ type JWT {
 
 type Query {
     user(_id: ID!): User,
+    jwt(password: String!,email: String!): JWT
 }
 
 type Mutation {
     register(firstName: String! ,lastName: String! ,middleName: String,password: String!,email: String!): User,
-    login(password: String!,email: String!): JWT
 }

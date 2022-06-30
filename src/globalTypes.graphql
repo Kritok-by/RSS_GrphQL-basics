@@ -1,7 +1,7 @@
 type SomeObjects {
-  limit: Int!
-  offset: Int!
-  total: Int!
+    limit: Int!
+    offset: Int!
+    total: Int!
 }
 
 type DeleteResponse {
