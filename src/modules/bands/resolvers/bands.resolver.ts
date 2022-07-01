@@ -9,46 +9,27 @@ const resolver = {
       const { data } = await client.get('', { params: { limit, offset, filter } });
       return data;
     },
-    band: async (_, { _id }) => {
-      const { data } = await client.get(_id);
+    band: async (_, { id }) => {
+      const { data } = await client.get(id);
       return data;
     },
   },
   Mutation: {
-    createBand: async (_, args) => {
-      const { data } = await client.post('', args, {
-        headers: {
-          Authorization: `Bearer ${process.env.JWT}`,
-        },
-      });
-      return data;
-    },
-    updateBand: async (_, { id, args }) => {
-      try {
-        const { data } = await client.put(id, args, {
-          headers: {
-            Authorization: `Bearer ${process.env.JWT}`,
-          },
-        });
-
-        return data;
-      } catch (e) {
-        return e;
-      }
-    },
-    deleteBand: async (_, { id }) => {
-      try {
-        const { data } = await client.delete(id, {
-          headers: {
-            Authorization: `Bearer ${process.env.JWT}`,
-          },
-        });
-
-        return data;
-      } catch (e) {
-        return e;
-      }
-    },
+    createBand: async (_, { args }, { token }) => client.post('', args, {
+      headers: {
+        Authorization: token,
+      },
+    }),
+    updateBand: async (_, { id, args }, { token }) => client.put(id, args, {
+      headers: {
+        Authorization: token,
+      },
+    }),
+    deleteBand: async (_, { id }, { token }) => client.delete(id, {
+      headers: {
+        Authorization: token,
+      },
+    }),
   },
 };
 

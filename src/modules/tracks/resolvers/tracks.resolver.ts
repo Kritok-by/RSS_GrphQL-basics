@@ -5,50 +5,25 @@ const client = (() => axios.create({ baseURL: env.TRACKS_URL }))();
 
 const resolver = {
   Query: {
-    tracks: async (_, { limit = 5, offset = 0, filter = '' }) => {
-      const { data } = await client.get('', { params: { limit, offset, filter } });
-      return data;
-    },
-    track: async (_, { _id }) => {
-      const { data } = await client.get(_id);
-      return data;
-    },
+    tracks: async (_, { limit = 5, offset = 0, filter = '' }) => client.get('', { params: { limit, offset, filter } }),
+    track: async (_, { id }) => client.get(id),
   },
   Mutation: {
-    createTrack: async (_, args) => {
-      const { data } = await client.post('', args, {
-        headers: {
-          Authorization: `Bearer ${process.env.JWT}`,
-        },
-      });
-      return data;
-    },
-    updateTrack: async (_, { id, args }) => {
-      try {
-        const { data } = await client.put(id, args, {
-          headers: {
-            Authorization: `Bearer ${process.env.JWT}`,
-          },
-        });
-
-        return data;
-      } catch (e) {
-        return e;
-      }
-    },
-    deleteTrack: async (_, { id }) => {
-      try {
-        const { data } = await client.delete(id, {
-          headers: {
-            Authorization: `Bearer ${process.env.JWT}`,
-          },
-        });
-
-        return data;
-      } catch (e) {
-        return e;
-      }
-    },
+    createTrack: async (_, { args }, { token }) => client.post('', args, {
+      headers: {
+        Authorization: token,
+      },
+    }),
+    updateTrack: async (_, { id, args }, { token }) => client.put(id, args, {
+      headers: {
+        Authorization: token,
+      },
+    }),
+    deleteTrack: async (_, { id }, { token }) => client.delete(id, {
+      headers: {
+        Authorization: token,
+      },
+    }),
   },
 };
 

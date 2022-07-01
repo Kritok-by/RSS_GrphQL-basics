@@ -1,29 +1,36 @@
 type Band {
     id: ID!
+    name: String!
+    origin: String
+    members: [Member]
+    website: String
+    genres: [Genre]
+}
+
+input BandInput {
     name: String
     origin: String
-    members: [ID]
+    members: [MemberInput]
     website: String
     genres: [ID]
 }
 
-input BandInput {
-    id: ID
-    name: String
+input BandPostInput {
+    name: String!
     origin: String
-    members: [ID]
+    members: [MemberInput]
     website: String
     genres: [ID]
 }
 
 type Member {
-    artist: String!
+    artist: String
     instrument: String
     years: [String]
 }
 
 input MemberInput {
-    artist: String!
+    artist: String
     instrument: String
     years: [String]
 }
@@ -37,11 +44,11 @@ type Bands {
 
 type Query {
     bands(limit: Int, offset: Int, filter: String): Bands,
-    band(_id: ID!): Band
+    band(id: ID!): Band
 }
 
 extend type Mutation {
-    createBand(firstName: String!,secondName: String!, country: String!): Band,
+    createBand(args: BandPostInput): Band,
     updateBand(id: ID!, args: BandInput): Band
     deleteBand(id: ID!): DeleteResponse
 }

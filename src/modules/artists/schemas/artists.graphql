@@ -10,14 +10,19 @@ type Artist {
     instruments: [String]
 }
 
-input ArtistInput {
-    id: ID
+input ArtistPostInput {
     firstName: String!
     secondName: String!
+    country: String!
+}
+
+input ArtistInput {
+    firstName: String
+    secondName: String
     middleName: String
     birthDate: String
     birthPlace: String
-    country: String!
+    country: String
     bands: [ID]
     instruments: [String]
 }
@@ -31,13 +36,11 @@ type Artists {
 
 type Query {
     artists(limit: Int, offset: Int, filter: String): Artists,
-    artist(_id: ID!): Artist
-
+    artist(id: ID!): Artist
 }
 
-
 extend type Mutation {
-  createArtist(firstName: String!,secondName: String!, country: String!): Artist,
+  createArtist(args: ArtistPostInput): Artist,
   updateArtist(id: ID!, args: ArtistInput): Artist
   deleteArtist(id: ID!): DeleteResponse
 }

@@ -6,6 +6,7 @@ const server = new ApolloServer({
   csrfPrevention: true,
   cache: 'bounded',
   schema: schemaWithMiddleware,
+  context: ({ req }) => ({ token: req.headers.authorization || '' }),
 });
 
 // The `listen` method launches a web server.

@@ -9,19 +9,19 @@ const resolver = {
     artist: async (_, { id }) => client.get(id),
   },
   Mutation: {
-    createArtist: async (_, { ...args }) => client.post('', args, {
+    createArtist: async (_, { args }, { token }) => client.post('', args, {
       headers: {
-        Authorization: `Bearer ${process.env.JWT}`,
+        Authorization: token,
       },
     }),
-    updateArtist: async (_, { id, args }) => client.put(id, args, {
+    updateArtist: async (_, { id, args }, { token }) => client.put(id, args, {
       headers: {
-        Authorization: `Bearer ${process.env.JWT}`,
+        Authorization: token,
       },
     }),
-    deleteArtist: async (_, { id }) => client.delete(id, {
+    deleteArtist: async (_, { id }, { token }) => client.delete(id, {
       headers: {
-        Authorization: `Bearer ${process.env.JWT}`,
+        Authorization: token,
       },
     }),
   },

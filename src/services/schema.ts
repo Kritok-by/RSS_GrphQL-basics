@@ -9,7 +9,7 @@ const wrongOutputKeys = {
   userId: 'id',
   genresIds: 'genres',
   artistsIds: 'artists',
-  tracksIds: 'tracks',
+  trackIds: 'tracks',
 };
 
 const wrongInputKeys = Object.fromEntries(
@@ -48,10 +48,9 @@ const logResult = async (resolve, root, args, context, info) => {
       Object.entries(data)
         .map(([key, value]) => [key in wrongOutputKeys ? wrongOutputKeys[key] : key, value]),
     );
-
     return changedArr;
   } catch (e) {
-    console.log(e.message);
+    console.log(e);
     return e.message;
   }
 };
