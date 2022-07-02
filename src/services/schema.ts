@@ -51,7 +51,12 @@ const logResult = async (resolve, root, args, context, info) => {
     return changedArr;
   } catch (e) {
     console.log(e);
-    return e.message;
+    const { response: data } = e;
+    if (data) {
+      const [message] = data.message;
+      throw new Error(message);
+    }
+    throw e.message;
   }
 };
 

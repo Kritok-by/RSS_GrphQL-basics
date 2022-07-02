@@ -5,14 +5,8 @@ const client = (() => axios.create({ baseURL: env.BANDS_URL }))();
 
 const resolver = {
   Query: {
-    bands: async (_, { limit = 5, offset = 0, filter = '' }) => {
-      const { data } = await client.get('', { params: { limit, offset, filter } });
-      return data;
-    },
-    band: async (_, { id }) => {
-      const { data } = await client.get(id);
-      return data;
-    },
+    bands: async (_, { limit = 5, offset = 0, filter = '' }) => client.get('', { params: { limit, offset, filter } }),
+    band: async (_, { id }) => client.get(id),
   },
   Mutation: {
     createBand: async (_, { args }, { token }) => client.post('', args, {
