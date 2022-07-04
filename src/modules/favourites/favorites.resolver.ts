@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { env } from 'process';
+import getAnyByID from '../../shared/getAnyByID';
 
 const client = (() => axios.create({ baseURL: env.FAVORITES_URL }))();
 
@@ -10,6 +11,12 @@ const resolver = {
         Authorization: token,
       },
     }),
+  },
+  Favourites: {
+    artists: ({ artists }) => getAnyByID(artists, 'artists'),
+    bands: ({ bands }) => getAnyByID(bands, 'bands'),
+    tracks: ({ tracks }) => getAnyByID(tracks, 'bands'),
+    genres: ({ genres }) => getAnyByID(genres, 'genres'),
   },
   Mutation: {
     addTrackToFavourites: async (_, { id }, { token }) => client.put('add', { id, type: 'tracks' }, {

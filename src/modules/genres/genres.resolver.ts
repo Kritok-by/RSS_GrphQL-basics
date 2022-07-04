@@ -9,7 +9,7 @@ const resolver = {
     genre: async (_, { id }) => client.get(id),
   },
   Mutation: {
-    createGenre: async (_, { args }, { token }) => client.post('', { args }, {
+    createGenre: async (_, { args }, { token }) => client.post('', args, {
       headers: {
         Authorization: token,
       },
