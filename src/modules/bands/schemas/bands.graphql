@@ -24,13 +24,19 @@ input BandPostInput {
 }
 
 type Member {
-    artist: String
+    artist: ID!
+    firstName: String
+    secondName: String
+    middleName: String
+    birthDate: String
+    birthPlace: String
+    country: String
     instrument: String
     years: [String]
 }
 
 input MemberInput {
-    artist: String
+    artist: ID!
     instrument: String
     years: [String]
 }

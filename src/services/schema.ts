@@ -12,7 +12,6 @@ const logResult = async (resolve, root, args, context, info) => {
     }
 
     const res = await resolve(root, middlewareArgs, context, info);
-    console.log(res);
 
     const data = 'data' in res ? res.data : res;
 

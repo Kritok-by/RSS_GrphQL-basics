@@ -10,7 +10,17 @@ const resolver = {
     band: (_, { id }) => client.get(id),
   },
   Band: {
-    genres: async ({ genres }) => getAnyByID(genres, 'genres'),
+    genres: ({ genres }) => getAnyByID(genres, 'genres'),
+    members: async ({ members }) => {
+      const res = await getAnyByID(members.map((i) => i.artist), 'artists');
+      return members.map((item) => {
+        const artist = res.find((i) => i.id === item.artist);
+        if (artist) {
+          return ({ ...item, ...artist });
+        }
+        return item;
+      });
+    },
   },
   Mutation: {
     createBand: (_, { args }, { token }) => client.post('', args, {
