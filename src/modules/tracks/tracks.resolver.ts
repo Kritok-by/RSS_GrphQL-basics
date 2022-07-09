@@ -12,7 +12,14 @@ const resolver = {
   Track: {
     bands: ({ bands }) => getAnyByID(bands, 'bands'),
     genres: ({ genres }) => getAnyByID(genres, 'genres'),
-    albums: ({ albums }) => getAnyByID(albums, 'albums'),
+    album: async ({ album }) => {
+      const albumData = await getAnyByID([album], 'albums');
+      if (albumData.length) {
+        return albumData[0];
+      }
+      throw new Error('Album not found');
+    },
+    artists: ({ artists }) => getAnyByID(artists, 'artists'),
   },
   Mutation: {
     createTrack: async (_, { args }, { token }) => client.post('', args, {

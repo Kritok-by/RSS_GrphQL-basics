@@ -5,6 +5,7 @@ export const wrongOutputKeys = {
   genresIds: 'genres',
   artistsIds: 'artists',
   trackIds: 'tracks',
+  albumId: 'album',
 };
 
 export const wrongInputKeys = Object.fromEntries(

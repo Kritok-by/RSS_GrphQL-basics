@@ -15,10 +15,7 @@ const resolver = {
       const res = await getAnyByID(members.map((i) => i.artist), 'artists');
       return members.map((item) => {
         const artist = res.find((i) => i.id === item.artist);
-        if (artist) {
-          return ({ ...item, ...artist });
-        }
-        return item;
+        return artist ? ({ ...item, ...artist }) : item;
       });
     },
   },
