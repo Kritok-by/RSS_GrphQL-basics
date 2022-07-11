@@ -1,0 +1,14 @@
+# dependencies
+/node_modules
+
+# IDE
+/.idea
+/.awcache
+/.vscode
+
+# dist
+/dist
+
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
